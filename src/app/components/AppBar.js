@@ -12,19 +12,25 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import blue from '@material-ui/core/colors/blue';
+import pink from '@material-ui/core/colors/pink';
 
 const styles = {
   root: {
     flexGrow: 1,
+    fontFamily:'Montserrat'
   },
   grow: {
     flexGrow: 1,
+    fontFamily:'Montserrat'
   },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
+    fontFamily:'Montserrat'
   },
+  AppBarStyles:{
+    fontFamily:'Montserrat'
+  }
 };
 
 class MenuAppBar extends React.Component {
@@ -65,7 +71,7 @@ class MenuAppBar extends React.Component {
             label={auth ? 'Logout' : 'Login'}
           />
         </FormGroup> */}
-        <AppBar position="static" style={{backgroundColor: blue[300]}}>
+        <AppBar position="static" style={{backgroundColor: pink[500],fontFamily:'Montserrat'}}>
           <Toolbar>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={this.handleIcon}>
               <MenuIcon />
@@ -97,8 +103,8 @@ class MenuAppBar extends React.Component {
                   open={open}
                   onClose={this.handleClose}
                 >
-                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                  <MenuItem onClick={this.handleClose} style={{fontFamily:'Montserrat'}}>Account settings</MenuItem>
+                  <MenuItem onClick={this.handleClose} style={{fontFamily:'Montserrat'}}>Quit</MenuItem>
                 </Menu>
               </div>
             )}

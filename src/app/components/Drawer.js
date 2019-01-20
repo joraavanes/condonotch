@@ -41,7 +41,7 @@ class TemporaryDrawer extends React.Component {
   render() {
     const { classes } = this.props;
 
-    const sideList = (
+    const rightSideList = (
       <div className={classes.list}>
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -63,20 +63,20 @@ class TemporaryDrawer extends React.Component {
       </div>
     );
 
-    const fullList = (
-      <div className={classes.fullList}>
+    const sideList = (
+      <div className={classes.list}>
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button key={text} onClick={this.toggleAppDrawer}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={text}/>
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button key={text} onClick={this.toggleAppDrawer}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -85,9 +85,31 @@ class TemporaryDrawer extends React.Component {
       </div>
     );
 
+    const fullList = (
+      <div className={classes.fullList}>
+        <List>
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={text}/>
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={text}/>
+            </ListItem>
+          ))}
+        </List>
+      </div>
+    );
+
     return (
       <div style={{paddingTop: 10}}>
-        <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button>
+        {/* <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button> */}
         <Button onClick={this.toggleDrawer('right', true)}>Open Right</Button>
         <Button onClick={this.toggleDrawer('top', true)}>Open Top</Button>
         <Button onClick={this.toggleDrawer('bottom', true)}>Open Bottom</Button>
@@ -132,7 +154,7 @@ class TemporaryDrawer extends React.Component {
             onClick={this.toggleDrawer('right', false)}
             onKeyDown={this.toggleDrawer('right', false)}
           >
-            {sideList}
+            {rightSideList}
           </div>
         </Drawer>
       </div>

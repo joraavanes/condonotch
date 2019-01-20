@@ -17,6 +17,14 @@ module.exports = {
                 use:['style-loader','css-loader','sass-loader'],
                 test:/\.scss$/,
                 exclude: /node_modules/
+            },
+            {
+                loader:'file-loader',
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                options: {
+                    name:'[name].[ext]',
+                    limit:8000
+                }
             }
         ]
     },

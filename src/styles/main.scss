@@ -1,7 +1,18 @@
 $mytext: 'Love';
 
+@font-face {
+    font-family: 'BKoodak';
+    src:url('../fonts/BKoodakBold.eot?#') format('eot'),    
+          url('../fonts/BKoodakBold.woff') format('woff'),
+          url('../fonts/BKoodakBold.ttf') format('truetype'); 
+}
+
+// @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:100,300,400");
+*{font-family: 'Montserrat' !important;}
+
 body{
     // padding-top:50px;
+    font-family: 'Montserrat';
 }
 
 form{
