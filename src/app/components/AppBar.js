@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Fade from '@material-ui/core/Fade';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
@@ -13,6 +15,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import pink from '@material-ui/core/colors/pink';
+import orange from '@material-ui/core/colors/orange';
 
 const styles = {
   root: {
@@ -36,7 +39,7 @@ const styles = {
 class MenuAppBar extends React.Component {
   state = {
     auth: true,
-    anchorEl: null,
+    anchorEl: null
   };
 
   handleChange = event => {
@@ -71,14 +74,17 @@ class MenuAppBar extends React.Component {
             label={auth ? 'Logout' : 'Login'}
           />
         </FormGroup> */}
-        <AppBar position="static" style={{backgroundColor: pink[500],fontFamily:'Montserrat'}}>
+        <AppBar position="static" style={{backgroundColor: pink[500]}}>
+          <Fade in={this.props.loading}>
+            <LinearProgress/>          
+          </Fade>
           <Toolbar>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={this.handleIcon}>
               <MenuIcon />
             </IconButton>
             
               {this.props.companyName && <Typography variant="h6" color="inherit" className={classes.grow}>{this.props.companyName}</Typography>}
-            
+              
             {auth && (
               <div>
                 <IconButton
@@ -103,8 +109,9 @@ class MenuAppBar extends React.Component {
                   open={open}
                   onClose={this.handleClose}
                 >
-                  <MenuItem onClick={this.handleClose} style={{fontFamily:'Montserrat'}}>Account settings</MenuItem>
-                  <MenuItem onClick={this.handleClose} style={{fontFamily:'Montserrat'}}>Quit</MenuItem>
+                  <MenuItem onClick={this.handleClose}>Account settings</MenuItem>
+                  <MenuItem onClick={this.handleClose}>Quit</MenuItem>
+                  <MenuItem onClick={this.handleClose} style={{fontFamily:'BKoodak'}}>خروج</MenuItem>
                 </Menu>
               </div>
             )}

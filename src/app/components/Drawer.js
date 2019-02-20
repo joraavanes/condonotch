@@ -111,7 +111,9 @@ class TemporaryDrawer extends React.Component {
       <div style={{paddingTop: 10}}>
         {/* <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button> */}
         <Button onClick={this.toggleDrawer('right', true)}>Open Right</Button>
+        <br/>
         <Button onClick={this.toggleDrawer('top', true)}>Open Top</Button>
+        <br/>
         <Button onClick={this.toggleDrawer('bottom', true)}>Open Bottom</Button>
         <Drawer open={this.props.drawerState} onClose={this.toggleAppDrawer}>
           <div

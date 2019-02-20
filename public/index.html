@@ -6,9 +6,214 @@
         <style>body{margin:0;padding:0;}</style>
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:100,300,400">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            div.loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    z-index: 900;
+    -webkit-transition: all ease-out 1s;
+    -moz-transition: all ease-out 1s;
+    -ms-transition: all ease-out 1s;
+    -o-transition: all ease-out 1s;
+    transition: all ease-out 1s;
+}
+
+div.loader.on {
+    opacity: 1;
+    -webkit-transition: all ease-out 1s;
+    -moz-transition: all ease-out 1s;
+    -ms-transition: all ease-out 1s;
+    -o-transition: all ease-out 1s;
+    transition: all ease-out 1s;
+}
+
+div.loader .public{
+    border-radius: 50%;
+    border-top: 5px solid #666;
+    border-bottom: 5px solid #666;
+    border-right: 5px solid #fff;
+    border-left: 5px solid #fff;
+    /*margin: 10% auto 0;*/
+    margin: 0 auto;
+}                
+div.loader div#circle {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: calc(50% - 40px);
+    left: calc(50% - 40px);
+    border-bottom-color: rgb(233, 30, 99); 
+    border-top-color: rgb(233, 30, 99);
+    border-left-color:  rgba(255, 255, 255, 0);
+    border-left-color:  rgba(255, 255, 255, 0);
+    -webkit-animation: rotate infinite linear 1s;
+    -moz-animation: rotate infinite linear 1s;
+    -o-animation: rotate infinite linear 1s;
+    -ms-animation: rotate infinite linear 1s;
+    animation: rotate infinite linear 1s;
+}
+
+div.loader div#inner-circle {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border-bottom-color: #ccc;
+    border-top-color: #ccc;
+    -webkit-animation: reverse-rotate infinite linear 1s;
+    -moz-animation: reverse-rotate infinite linear 1s;
+    -o-animation: reverse-rotate infinite linear 1s;
+    -ms-animation: reverse-rotate infinite linear 1s;
+    animation: reverse-rotate infinite linear 1s;
+}
+@-webkit-keyframes rotate{
+    0% {
+        -webkit-transform: rotate(0);
+        -moz-transform: rotate(0);
+        -o-transform: rotate(0);
+        -ms-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }   
+}
+@-moz-keyframes rotate{
+    0% {
+        -webkit-transform: rotate(0);
+        -moz-transform: rotate(0);
+        -o-transform: rotate(0);
+        -ms-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }   
+}
+@-o-keyframes rotate{
+    0% {
+        -webkit-transform: rotate(0);
+        -moz-transform: rotate(0);
+        -o-transform: rotate(0);
+        -ms-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }   
+}
+@keyframes rotate{
+    0% {
+        -webkit-transform: rotate(0);
+        -moz-transform: rotate(0);
+        -o-transform: rotate(0);
+        -ms-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }   
+}
+@-webkit-keyframes reverse-rotate{
+    0% {
+        -moz-transform: rotate(0);
+        -ms-transform: rotate(0);
+        -o-transform: rotate(0);
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        -moz-transform: rotate(-720deg);
+        -ms-transform: rotate(-720deg);
+        -o-transform: rotate(-720deg);
+        -webkit-transform: rotate(-720deg);
+        transform: rotate(-720deg);
+    }   
+}
+@-moz-keyframes reverse-rotate{
+    0% {
+        -moz-transform: rotate(0);
+        -ms-transform: rotate(0);
+        -o-transform: rotate(0);
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        -moz-transform: rotate(-720deg);
+        -ms-transform: rotate(-720deg);
+        -o-transform: rotate(-720deg);
+        -webkit-transform: rotate(-720deg);
+        transform: rotate(-720deg);
+    }   
+}
+@-o-keyframes reverse-rotate{
+    0% {
+        -moz-transform: rotate(0);
+        -ms-transform: rotate(0);
+        -o-transform: rotate(0);
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        -moz-transform: rotate(-720deg);
+        -ms-transform: rotate(-720deg);
+        -o-transform: rotate(-720deg);
+        -webkit-transform: rotate(-720deg);
+        transform: rotate(-720deg);
+    }   
+}
+@keyframes reverse-rotate{
+    0% {
+        -moz-transform: rotate(0);
+        -ms-transform: rotate(0);
+        -o-transform: rotate(0);
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        -moz-transform: rotate(-720deg);
+        -ms-transform: rotate(-720deg);
+        -o-transform: rotate(-720deg);
+        -webkit-transform: rotate(-720deg);
+        transform: rotate(-720deg);
+    }   
+}
+        </style>
     </head>
     <body>
-        <main id="app"></main>
+        <main id="app">
+            <div class="loader on">
+                <div id="circle" class="public">
+                    <div id="inner-circle" class="public"></div>
+                </div>
+            </div>
+        </main>
         <!-- <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script> -->
         <script src="/js/app.js"></script>
