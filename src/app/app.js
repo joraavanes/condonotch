@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter,Route,Switch,NavLink} from 'react-router-dom';
 import Question from './components/Question';
 import AppBar from './components/AppBar';
 import Drawer from './components/Drawer';
@@ -11,9 +12,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Home from './components/Home';
+import FurnishedCondos from './components/FurnishedCondos';
 import '../styles/main.scss';
-import { request } from 'http';
 import { Divider } from '@material-ui/core';
+import Rentals from './components/Rentals';
+import StyledButton from './components/widgets/StyledButton'
 
 console.time('Initial load');
 
@@ -69,8 +73,9 @@ class HelloCondoNotch extends React.Component{
         );
 
         fetch(req)
-        .then(res => console.log(res))
-        .then(data=> console.log(data));
+            .then(res => console.log(res))
+            .then(data=> console.log(data))
+            .catch((err)=> console.log(err));
     };
 
     handleIdeaAnswer(answer){
@@ -107,69 +112,76 @@ class HelloCondoNotch extends React.Component{
 
     render(){
         return (
-                <div style={{color: 'gray'}}>
-                    <AppBar drawerState={this.state.drawerState} loading={this.state.loading} changeDrawerState={this.changeDrawerState} companyName={this.props.companyName}/>
-                    <Grid container>
-                        <Grid item xs={12} sm={3}>
+                <BrowserRouter>
+                    <div>
+                        <AppBar drawerState={this.state.drawerState} loading={this.state.loading} changeDrawerState={this.changeDrawerState} companyName={this.props.companyName}/>
+                        <Grid container>
 
-                            <Paper style={paperStyles}>
-                                <Drawer drawerState={this.state.drawerState} toggleAppDrawer={this.toggleClose}/>
-                                <h2 className="header2">Questionaire</h2>
+                            <Grid item xs={12} sm={3}>
+                                <Paper style={paperStyles}>
+                                    <Drawer drawerState={this.state.drawerState} toggleAppDrawer={this.toggleClose}/>
 
-                                <Button variant="contained" color="secondary" onClick={this.handleBtnClick}>
-                                    Ask something
+                                    <h2 className="header2">Questionaire</h2>
+                                    <Button variant="contained" color="secondary" onClick={this.handleBtnClick}>
+                                        Ask something
+                                    </Button>
+
+                                    <Divider style={{margin:'5px 0 5px 0'}}/>
+                                    <Button variant="contained" color="secondary" style={{padding:0}}>
+                                        <NavLink to="/" style={{color:'white',textDecoration:'none',padding:'6px 16px'}}>Home</NavLink>
+                                    </Button>
+                                    <Divider style={{margin:'5px 0 5px 0'}}/>
+                                    <Button variant="contained" color="secondary" style={{padding:0}}>
+                                        <NavLink to="/FurnishedCondos" style={{color:'white',textDecoration:'none',padding:'6px 16px',fontSize:'1vw'}}>Furnished Condos</NavLink>
+                                    </Button>
+
+                                    <Divider style={{margin:'5px 0 5px 0'}}/>
+                                    <Button variant="contained" color="secondary" style={{padding:0}}>
+                                        <NavLink to="/rentals" style={{color:'white',textDecoration:'none',padding:'6px 16px'}}>Rentals</NavLink>
+                                    </Button>
+
+                                    <Divider style={{margin:'5px 0 5px 0'}}/>
+                                    <StyledButton>Nice Button</StyledButton>
+                                </Paper>
+                            </Grid>
+
+                            <Switch>
+                                <Route path="/" component={Home} exact={true}/>
+                                <Route path="/FurnishedCondos" component={FurnishedCondos}/>
+                                <Route path="/Rentals" component={Rentals}/>
+                            </Switch>
+                            
+                            
+                        </Grid>
+
+                        <Dialog
+                        open={this.state.dialogOpen}
+                        onClose={this.handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                        styles={styles.dialog}
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                Let Google help apps determine location. This means sending anonymous location data to
+                                Google, even when no apps are running.
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={this.handleClose} color="primary">
+                                Disagree
                                 </Button>
-                            </Paper>
-
-                        </Grid>
-
-                        <Grid item xs={12} sm={9}>
-                            <Paper style={paperStyles}>
-                                <h3>What are you interested in?</h3>
-                                <img src="./images/uxui.jpg" style={imgStyles}/>
-
-                                <p style={{textAlign:"justify",fontFamily:"Montserrat"}}>
-                                Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible entirely thanks to the support of these awesome backers.
-                                Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible entirely thanks to the support of these awesome backers.
-                                Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible entirely thanks to the support of these awesome backers.
-                                Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible entirely thanks to the support of these awesome backers.
-                                Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible entirely thanks to the support of these awesome backers.
-                                Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible entirely thanks to the support of these awesome backers.
-                                Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible entirely thanks to the support of these awesome backers.
-                                Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible entirely thanks to the support of these awesome backers.
-                                </p>
-                                <Button variant="contained" onClick={this.getRemoteInfo}>Get some info 🦄</Button>
-                            </Paper>
-                        </Grid>
-                    </Grid>
-
-                    <Dialog
-                    open={this.state.dialogOpen}
-                    onClose={this.handleClose}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                    styles={styles.dialog}
-                    >
-                        <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
-                        <DialogContent>
-                            <DialogContentText id="alert-dialog-description">
-                            Let Google help apps determine location. This means sending anonymous location data to
-                            Google, even when no apps are running.
-                            </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={this.handleClose} color="primary">
-                            Disagree
-                            </Button>
-                            <Button onClick={this.handleClose} color="primary" autoFocus>
-                            Agree
-                            </Button>
-                        </DialogActions>
-                    </Dialog>
-                    
-                        {/* <Question questions={this.state.questions} handleIdeaAnswer={this.handleIdeaAnswer} answer={this.state.answer}/> */}
-                    
-                </div>
+                                <Button onClick={this.handleClose} color="primary" autoFocus>
+                                Agree
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                        
+                            {/* <Question questions={this.state.questions} handleIdeaAnswer={this.handleIdeaAnswer} answer={this.state.answer}/> */}
+                        
+                    </div>
+                </BrowserRouter>
             );
     }
 };

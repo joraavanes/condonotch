@@ -15,6 +15,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import pink from '@material-ui/core/colors/pink';
+import blue from '@material-ui/core/colors/blue';
 import orange from '@material-ui/core/colors/orange';
 
 const styles = {
@@ -32,7 +33,11 @@ const styles = {
     fontFamily:'Montserrat'
   },
   AppBarStyles:{
-    fontFamily:'Montserrat'
+    fontFamily:'Montserrat',
+    backgroundColor: blue[500]
+  },
+  LinearProgressStyles:{
+    backgroundColor:blue[100]
   }
 };
 
@@ -54,7 +59,7 @@ class MenuAppBar extends React.Component {
     this.setState({ anchorEl: null });
   };
 
-  handleIcon = () =>{
+  handleDrawer = () =>{
     //   console.log(this.props.drawerState);
       this.props.changeDrawerState();
   }
@@ -76,10 +81,10 @@ class MenuAppBar extends React.Component {
         </FormGroup> */}
         <AppBar position="static" style={{backgroundColor: pink[500]}}>
           <Fade in={this.props.loading}>
-            <LinearProgress/>          
+            <LinearProgress style={styles.LinearProgressStyles}/>          
           </Fade>
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={this.handleIcon}>
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={this.handleDrawer}>
               <MenuIcon />
             </IconButton>
             

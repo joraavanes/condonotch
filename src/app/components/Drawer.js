@@ -10,6 +10,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import {NavLink} from 'react-router-dom';
 
 const styles = {
   list: {
@@ -66,10 +67,10 @@ class TemporaryDrawer extends React.Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Home', 'Furnishedcondos', 'Rentals', 'Drafts'].map((text, index) => (
             <ListItem button key={text} onClick={this.toggleAppDrawer}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text}/>
+              <ListItemText><NavLink to={text} style={{textDecoration:'none',color:'#666'}}>{text}</NavLink></ListItemText>
             </ListItem>
           ))}
         </List>
@@ -110,18 +111,18 @@ class TemporaryDrawer extends React.Component {
     return (
       <div style={{paddingTop: 10}}>
         {/* <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button> */}
-        <Button onClick={this.toggleDrawer('right', true)}>Open Right</Button>
+        {/* <Button onClick={this.toggleDrawer('right', true)}>Open Right</Button>
         <br/>
         <Button onClick={this.toggleDrawer('top', true)}>Open Top</Button>
         <br/>
-        <Button onClick={this.toggleDrawer('bottom', true)}>Open Bottom</Button>
+        <Button onClick={this.toggleDrawer('bottom', true)}>Open Bottom</Button> */}
         <Drawer open={this.props.drawerState} onClose={this.toggleAppDrawer}>
           <div
             tabIndex={0}
             role="button"
             onClick={this.toggleDrawer('left', false)}
-            onKeyDown={this.toggleDrawer('left', false)}
-          >
+
+            >
             {sideList}
           </div>
         </Drawer>
