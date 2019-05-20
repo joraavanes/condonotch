@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Grid, Button, withStyles } from '@material-ui/core';
 import Rental from './Rental';
+import {Transition,animated} from 'react-spring/renderprops'
 
 let styles = {
     customBtn: {
@@ -41,7 +42,7 @@ class Rentals extends React.Component{
     }
 
     handleAddRental(){
-        this.setState((prevState) => ({quantity: prevState.quantity.concat(prevState.quantity + 1)}));
+        this.setState((prevState) => ({quantity: prevState.quantity.concat(prevState.quantity.length + 1)}));
     }
 
     handleReset(){
@@ -57,9 +58,22 @@ class Rentals extends React.Component{
                     <Button variant="contained" className={classes.customBtn} onClick={this.handleReset}>Reset</Button>
                 </Grid>
                 <Grid container>
-                    {this.state.quantity.map((i) =>{
-                       return <Rental key={i}/>
-                    })}
+                    <Transition
+                            native
+                            items={this.state.quantity}
+                            from={{opacity:0, marginTop:-30, maxWidth:'25%'}}
+                            enter={{opacity:1, marginTop:0, maxWidth:'25%'}}
+                            leave={{opacity:0, marginTop:-30, maxWidth:'25%'}}
+                        >
+                            {items => props => (
+                                <animated.div style={props}>
+                                    <Rental/>
+                                </animated.div>
+                            )}
+                    </Transition>
+                    {/* {this.state.quantity.map((i) =>{
+                        //return <Rental key={i}/>
+                    })} */}
                 </Grid>
             </Grid>
         );
